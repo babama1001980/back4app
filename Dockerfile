@@ -1,3 +1,13 @@
-FROM mjjonone/mjj:amd64
-ENV SERVER_PORT=7860
-RUN chmod 777 /app
+FROM node:latest
+
+WORKDIR /app
+
+COPY . .
+
+EXPOSE 3000
+
+RUN apt update -y &&\
+    chmod +x index.js &&\
+    npm install 
+    
+CMD ["node", "index.js"]
